@@ -105,3 +105,32 @@ class TestBooksCollector:
         collector.add_book_in_favorites('Ревизор')
         collector.add_book_in_favorites('Вий')
         assert collector.get_list_of_favorites_books() == ['Ревизор', 'Вий']
+
+    def test_add_new_book_same_name_added_once(self):
+        collector = BooksCollector()
+        collector.add_new_book('Ревизор')
+        collector.add_new_book('Ревизор')
+        assert collector.get_books_genre() == {'Ревизор': ''}
+
+    @pytest.mark.parametrize(
+        'name, genre',
+        [
+            ['Нет такой', 'Комедии'],
+            ['Ревизор', 'Роман'],
+        ]
+    )
+    def test_set_book_genre_missing_book_or_unknown_genre_not_set(self, name, genre):
+        collector = BooksCollector()
+        collector.add_new_book('Ревизор')
+        collector.set_book_genre(name, genre)
+        assert collector.get_books_genre() == {'Ревизор': ''}
+
+    def test_add_book_in_favorites_unknown_book_not_added(self):
+        collector = BooksCollector()
+        collector.add_book_in_favorites('Ревизор')
+        assert collector.get_list_of_favorites_books() == []
+
+    def test_get_books_for_children_book_without_genre_not_included(self):
+        collector = BooksCollector()
+        collector.add_new_book('Ревизор')
+        assert collector.get_books_for_children() == []

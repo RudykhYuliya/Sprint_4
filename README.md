@@ -12,3 +12,7 @@
 - `test_add_book_in_favorites_adds_book_only_once` - книга из словаря попадает в избранное один раз
 - `test_delete_book_from_favorites_removes_book` - книга удаляется из избранного
 - `test_get_list_of_favorites_books_returns_added_books` - возвращается список избранных книг
+- `test_add_new_book_same_name_added_once` - книга с тем же именем в словарь попадает один раз
+- `test_set_book_genre_missing_book_or_unknown_genre_not_set` - жанр не ставится, если книги нет или жанра нет в списке
+- `test_add_book_in_favorites_unknown_book_not_added` - книги нет в словаре - в избранное не попадает
+- `test_get_books_for_children_book_without_genre_not_included` - книга без жанра в детский список не попадает
